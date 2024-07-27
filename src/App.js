@@ -3,10 +3,13 @@ import { Container, Typography, Button } from '@mui/material';
 import Header from './components/Header';
 import CharacterList from './components/CharacterList';
 import WinnerModal from './components/WinnerModal';
+import SearchFilter from './components/SearchFilter';
+import './App.css';
 
 const App = () => {
   const [winner, setWinner] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleBattle = () => {
     // Lógica para determinar o vencedor da batalha
@@ -20,9 +23,10 @@ const App = () => {
       <Header />
       <Container>
         <Typography variant="h4" component="h1" gutterBottom>
-          Selecione o personagem desejado
+          Selecione um personagem desejavel
         </Typography>
-        <CharacterList />
+        <SearchFilter searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <CharacterList searchQuery={searchQuery} />
         <Button variant="contained" color="primary" onClick={handleBattle}>
           Iniciar Batalha
         </Button>

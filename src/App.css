@@ -1,6 +1,70 @@
+/* Estilos gerais */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilos da aplicação */
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../public/imagens/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
 }
+
+/* Estilos para o Header */
+.header {
+  margin-bottom: 20px;
+}
+
+/* Estilos para o SearchFilter */
+.search-filter {
+  margin-bottom: 20px;
+}
+
+/* Estilos para a lista de personagens */
+.character-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para os cartões de personagens individuais */
+.character-card {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  width: 150px;
+  text-align: center;
+}
+
+/* Estilos para o botão iniciar a batalha */
+.start-battle-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.start-battle-button:hover {
+  background-color: #cc0000;
+}
+
 
 .App-logo {
   height: 40vmin;
