@@ -7,15 +7,27 @@ import SearchFilter from './components/SearchFilter';
 import './App.css';
 
 const App = () => {
+  const [selectedCharacters, setSelectedCharacters] = useState([]);
   const [winner, setWinner] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const handleSelectCharacter = (character) => {
+    if (selectedCharacters.length < 2) {
+      setSelectedCharacters([...selectedCharacters, character]);
+    }
+  };
+
   const handleBattle = () => {
-    // Lógica para determinar o vencedor da batalha
-    const randomWinner = { id: 1, name: 'Ryu', description: 'A skilled martial artist' }; // Exemplo estático
-    setWinner(randomWinner);
-    setModalOpen(true);
+    if (selectedCharacters.length === 2) {
+      // Comparar os atributos powerstatus dos dois personagens
+      const [char1, char2] = selectedCharacters;
+      const winner = char1.powerstatus > char2.powerstatus ? char1 : char2;
+      setWinner(winner);
+      setModalOpen(true);
+    } else {
+      alert('Selecione exatamente dois personagens para a batalha.');
+    }
   };
 
   return (
@@ -23,10 +35,14 @@ const App = () => {
       <Header />
       <Container>
         <Typography variant="h4" component="h1" gutterBottom>
-          Selecione um personagem desejavel
+          Selecione dois personagens para a batalha
         </Typography>
         <SearchFilter searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <CharacterList searchQuery={searchQuery} />
+        <CharacterList 
+          searchQuery={searchQuery} 
+          onSelectCharacter={handleSelectCharacter}
+          selectedCharacters={selectedCharacters}
+        />
         <Button variant="contained" color="primary" onClick={handleBattle}>
           Iniciar Batalha
         </Button>
